@@ -1,5 +1,5 @@
 
-# **Kaggle Dataset Analysis and Modeling**
+# **EDA-Timeseries-Tabular**
 
 ## **Overview**
 This repository contains detailed analysis and predictive modeling workflows for two Kaggle datasets:

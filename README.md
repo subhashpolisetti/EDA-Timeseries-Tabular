@@ -1,72 +1,118 @@
 
-# **EDA-Timeseries-Tabular**
+# Air Quality Prediction Project
 
-## **Overview**
-This repository contains detailed analysis and predictive modeling workflows for two Kaggle datasets:
-1. **Tabular Dataset**: 2017 Yellow Taxi Trip Data
-2. **Time Series Dataset**: Air Quality Data
+## Project Overview:
+This project aims to predict air quality by modeling CO(GT) levels based on environmental factors and pollutant levels in a public air quality dataset. Using AutoML tools, feature engineering, and advanced machine learning models, this project explores relationships among pollutants, meteorological data, and other air quality indicators.
 
-The project focuses on cleaning, preprocessing, and visualizing the datasets while building robust machine learning models using AutoML tools like AutoViML.
+## Dataset:
+The dataset includes air quality measurements, collected hourly from a city monitoring station. It includes the following key features:
+- **Date and Time**: Timestamp information for each measurement.
+- **CO(GT)**: Target variable representing CO levels in mg/m³.
+- **Pollutant Sensors**: Various sensor measurements for compounds such as NOx, NMHC, and O3.
+- **Meteorological Variables**: Environmental measurements like temperature (T), relative humidity (RH), and absolute humidity (AH).
 
----
+## Data Source:
+- The dataset was sourced from Kaggle, provided in CSV format.
 
-## **Datasets**
-### 1. **2017 Yellow Taxi Trip Data**
-- **Description**: This dataset includes detailed trip records from NYC yellow taxis, including fare amounts, trip durations, pickup and drop-off locations, and timestamps.
-- **Goal**: Predict fare amounts and analyze trip patterns.
-- [Dataset Source](https://www.kaggle.com/datasets/helddata/yellow-taxi-trip-data-2017)
+## Data Preprocessing:
+1. **Date-Time Parsing**: Combined Date and Time columns into a single datetime index.
+2. **Missing Value Handling**: Used forward fill and interpolation to handle minor missing data.
+3. **Unit Conversion**: Converted European-style decimal commas to periods for numerical processing.
+4. **Filtering**: Removed rows with negative CO(GT) values, which represent erroneous data.
 
-### 2. **Air Quality Data**
-- **Description**: A time series dataset capturing air quality metrics such as PM2.5, temperature, and humidity over time.
-- **Goal**: Perform time series forecasting and trend analysis.
-- [Dataset Source](https://www.kaggle.com/datasets/stytch16/air-quality)
+## Exploratory Data Analysis (EDA):
+EDA included visualizations such as time series plots, scatter plots, and correlation heatmaps to understand relationships among pollutants and meteorological conditions.
 
----
+## Automated Machine Learning with AutoViML:
+For this project, AutoViML (Automated Variant Interpreter and Machine Learning) was used to automate key parts of the machine learning workflow:
+1. **Feature Selection**: AutoViML automatically selected relevant features, reducing redundancy and improving model efficiency.
+2. **Model Training**: Trained and compared various machine learning models, ultimately selecting the best-performing model.
+3. **Hyperparameter Tuning**: Used RandomizedSearchCV for efficient tuning, optimizing model performance without extensive manual tuning.
+4. **Feature Reduction and Engineering**: Employed feature engineering techniques and reduced the feature space based on importance.
 
-## **Workflow**
-### **1. Data Exploration and Visualization**
-- Comprehensive Exploratory Data Analysis (EDA) using:
-  - pandas profiling
-  - Manual and Auto EDA tools (e.g., Sweetviz)
-- Visualization of trends, distributions, and anomalies with:
-  - matplotlib
-  - seaborn
-  - plotly
-  - folium (for geospatial analysis)
+### AutoViML Parameters:
+- **hyper_param**: Set to ‘RS’ (Random Search) for efficient hyperparameter tuning.
+- **feature_reduction**: Enabled to reduce the feature set and improve model performance.
+- **scoring_parameter**: RMSE was chosen to prioritize models that minimize prediction error.
 
-### **2. Data Preprocessing**
-- Handling missing values and outliers.
-- Feature engineering:
-  - Derived trip duration and time-based features for the Taxi dataset.
-  - Extracted seasonal trends for Air Quality data.
-- Clustering and anomaly elimination.
+Using AutoViML allowed for streamlined model development, providing quick insights into the best-performing features and models.
 
-### **3. Model Building**
-- Machine learning models built using AutoML tools like AutoViML:
-  - Regression models for fare prediction (Taxi dataset).
-  - Time series forecasting for air quality metrics.
-- Ensemble models for enhanced prediction accuracy.
+## Modeling:
+The modeling process included various machine learning models tested through AutoViML, with performance evaluated using key metrics.
 
+### Key Models Explored:
+- Linear Models
+- Gradient Boosting Models (e.g., XGBoost, LightGBM)
+- Ensemble Methods
 
-## **Technologies Used**
-- Python Libraries:
-  - pandas, NumPy, matplotlib, seaborn, plotly, folium
-  - scikit-learn, AutoML (AutoViML)
-- Tools:
-  - Google Colab
-  - GitHub for version control
+## Evaluation:
+Model performance was evaluated with:
+- **Root Mean Squared Error (RMSE)**
+- **Mean Absolute Error (MAE)**
+- **R-squared (R²)**
 
----
-
-## **Results**
-1. **2017 Yellow Taxi Trip Data**:
-   - Insights into trip patterns and fare trends.
-   - Predictive models achieved an R² score of X and RMSE of Y for fare prediction.
-
-2. **Air Quality Data**:
-   - Identified seasonal trends and anomalies in air quality metrics.
-   - Time series forecasting model achieved X% accuracy.
+## Colab Notebook:
+[Colab Notebook Link Click Here: ](https://github.com/subhashpolisetti/EDA-Timeseries-Tabular/blob/main/TimeSeries/Time_Series_Analysis_%26_Clustering_of_Air_Quality_Levels.ipynb)
 
 
 
+# NYC Taxi Fare Prediction Analysis
 
+## Overview:
+This project analyzes NYC Yellow Taxi trip data to predict fare amounts using AutoML and traditional machine learning approaches. We explore trip patterns, fare relationships, and predictive modeling through comprehensive data analysis and visualization.
+
+## Dataset:
+We used the NYC Yellow Taxi Trip Data sample containing:
+- **Pickup/Dropoff timestamps**
+- **Trip distances**
+- **Fare amounts**
+- **Passenger counts**
+- **Payment types**
+- **Rate codes**
+
+## Analysis Pipeline:
+1. **Exploratory Data Analysis & Visualization**:
+   - **Basic Trip Metrics**: Trip distance vs fare amount relationships, average fare variation by hour, trip duration distributions, payment type breakdowns.
+   - **Temporal Patterns**: Trip frequency by day of week, average fare patterns by day, hourly demand variations, monthly trends.
+   - **Fare Analysis**: Overall fare distribution, impact of passenger count on fares, rate code influence, cost per mile patterns.
+   - **Distance and Duration Analysis**: Trip distance patterns, speed variations, duration trends by time of day.
+
+2. **Data Preprocessing**:
+   - Implemented comprehensive data preparation:
+     - Feature engineering from timestamps
+     - Trip duration calculations
+     - Outlier removal
+     - Feature scaling and normalization
+     - Categorical variable encoding
+
+3. **AutoML Implementation**:
+   - Used **PyCaret** for automated machine learning:
+     - Automated feature selection
+     - Model comparison and selection
+     - Hyperparameter tuning
+     - Ensemble model creation
+     - Performance evaluation
+
+## Results:
+The analysis generated multiple models with:
+- Comparison of regression algorithms
+- Cross-validation results
+- Feature importance rankings
+- Prediction accuracy metrics
+
+### Key Findings:
+- **Trip Patterns**: Identified peak hours, common trip durations, and speed patterns.
+- **Fare Insights**: Found strong correlation between trip distance and fare, time of day impact on pricing, and payment method preferences.
+- **Model Performance**: Achieved competitive RMSE scores, identified most important predictive features, and successfully handled categorical variables.
+
+## Dependencies:
+- pandas
+- numpy
+- scikit-learn
+- matplotlib
+- seaborn
+- pycaret
+
+
+## Colab Notebook:
+[Colab Notebook Link Click Here: ](https://github.com/subhashpolisetti/EDA-Timeseries-Tabular/blob/main/Tabular%20diverse/ML_Workflow_for_Taxi_Fare_Prediction.ipynb)
